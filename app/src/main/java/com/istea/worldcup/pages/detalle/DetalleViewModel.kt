@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.istea.worldcup.domain.Repository
 import com.istea.worldcup.navigation.Router
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class DetalleViewModel(
@@ -22,7 +21,7 @@ class DetalleViewModel(
 
     fun ejecutar(intencion: DetalleIntencion) {
         when(intencion){
-            is DetalleIntencion.IrParaAtras -> { }
+            is DetalleIntencion.IrParaAtras -> irParaAtras()
             is DetalleIntencion.CargarContenido -> cargarContenido()
         }
     }

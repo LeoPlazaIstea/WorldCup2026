@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.istea.worldcup.R
 import com.istea.worldcup.domain.Group
 import com.istea.worldcup.pages.grupos.GruposIntention.*
+import androidx.compose.material3.CircularProgressIndicator
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,7 +46,7 @@ fun GruposView(
         ) {
             BackgroundImage()
             when (state) {
-                GruposState.Cargando -> Text("Cargando...")
+                GruposState.Cargando -> Cargando()
                 is GruposState.Resultado -> GroupsList(grupos = state.grupos){
                     onAction(OnGrupoClick(it))
                 }
@@ -82,7 +83,7 @@ fun GroupCardView(
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = "grupo.name",
+                text = grupo.name,
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center
@@ -105,7 +106,7 @@ fun GroupCardView(
 @Composable
 fun BackgroundImage() {
     Image(
-        painter = painterResource(R.drawable.logo_viejo),
+        painter = painterResource(R.drawable.logo),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = Modifier
